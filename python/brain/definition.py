@@ -1,0 +1,40 @@
+import skfuzzy as fuzz
+from ..constant import temperature, humidity, light, control_levels
+
+# Tiến hành định nghĩa các khái niệm
+# temperature["very_cold"]
+# temperature["cold"]
+# temperature["slightly_cold"]
+# temperature["cool"]
+# temperature["warm"]
+# temperature["slightly_hot"]
+# temperature["hot"]
+# temperature["very_hot"]
+
+# humidity["very_dry"]
+# humidity["dry"]
+# humidity["slightly_dry"]
+# humidity["moderately_dry"]
+# humidity["humid"]
+# humidity["wet"]
+# humidity["very_wet"]
+
+# light["completely_dark"]
+# light["very_dark"]
+# light["dark"]
+# light["dim"]
+# light["faint"]
+# light["medium"]
+# light["bright"]
+# light["very_bright"]
+
+# control_levels["very_slow"]
+# control_levels["moderately_slow"]
+# control_levels["slow"]
+# control_levels["slightly_slow"]
+# control_levels["medium"]
+# control_levels["slightly_fast"]
+# control_levels["fast"]
+# control_levels["moderately_fast"]
+# control_levels["very_fast"]
+# control_levels["extermely_fast"]
