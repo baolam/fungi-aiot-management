@@ -4,5 +4,6 @@ const Router = express.Router();
 Router.use("/fungi", require("./fungi.routes"));
 Router.use("/data", require("./data.routes"));
 Router.use("/harvest", require("./harvest.routes"));
+Router.use("/rule", require("./rule.routes"));
 
 module.exports = Router;

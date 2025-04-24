@@ -12,6 +12,7 @@ SERVER_ADDRESS = os.getenv("JS_SERVER_ADDRESS")
 MQTT_HOST = os.getenv("MQTT_HOST")
 MQTT_PORT = int(os.getenv("MQTT_PORT"))
 ALLOW_DISCONNECT_WHEN_CATCH_EVENT = False
+DATABASE_NAME = os.getenv("DATABASE_NAME")
 
 interupt_event = threading.Event()
 

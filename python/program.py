@@ -3,6 +3,7 @@ import signal
 from .constant import *
 from .manager.js_manager import disconnect_to_js, sio, js_thread
 from .manager.device_manager import disconnect_to_mqtt, client, device_thread
+from .brain.rule import disconnect_to_db
 
 def on_disconnect_to_js():
     print("Disconnected to JS!")
@@ -16,6 +17,7 @@ def stop_program(a=None, b=None):
 
     disconnect_to_js()
     disconnect_to_mqtt()
+    disconnect_to_db()
     
     sys.exit(0)
 

@@ -3,6 +3,7 @@ const { FungiInfor, FungiInforStage } = require("./fungi.infor.models");
 const { HarvestControlHistory } = require("./history.models");
 const Harvest = require("./harvest.models");
 const Data = require("./data.models");
+const Rule = require("./rule.models");
 
 /// Phần định nghĩa các mối quan hệ dữ liệu
 FungiInfor.hasMany(FungiInforStage, {
@@ -33,6 +34,7 @@ async function connect() {
     await Data.sync();
     await Harvest.sync();
     await HarvestControlHistory.sync();
+    await Rule.sync();
     console.log("Sync database successfully!");
   } catch (err) {
     console.log(err);
