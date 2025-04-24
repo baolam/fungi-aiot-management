@@ -1,0 +1,47 @@
+@ADDRESS = http://localhost:3000/api/fungi
+
+### Thử thêm thông tin nấm mới
+POST {{ADDRESS}}
+Content-Type: application/json
+
+{
+    "name" : "Nấm hương",
+    "description" : "Nấm hương (Lentinula edodes) là một loài nấm ăn thuộc họ Marasmiaceae, có nguồn gốc từ Đông Á. Mũ nấm màu nâu, đường kính 5–10 cm, thịt dày và thơm đặc trưng. Nấm phát triển trên thân gỗ mục và được nuôi trồng phổ biến ở các vùng có khí hậu mát. Đây là loài nấm phân hủy gỗ (saprotroph), giúp tái chế chất hữu cơ trong tự nhiên. Nấm chứa nhiều protein, vitamin nhóm B và hợp chất lentinan có tác dụng tăng cường miễn dịch. Ngoài giá trị dinh dưỡng, nấm hương còn được sử dụng trong y học cổ truyền."
+}
+
+### Thêm thông tin giai đoạn
+POST {{ADDRESS}}/stage/1
+Content-Type: application/json
+
+{
+    "stages" : [
+        {
+            "name": "Giai đoạn nảy mầm",
+            "description": "Bào tử nấm hương phát triển thành sợi nấm (mycelium) trong môi trường ẩm và giàu dinh dưỡng, thường là gỗ mục hoặc mùn cưa.",
+            "time": 10
+        },
+        {
+            "name": "Giai đoạn sinh trưởng sợi nấm",
+            "description": "Sợi nấm lan rộng và chiếm lĩnh toàn bộ giá thể, chuẩn bị cho giai đoạn tạo quả thể (nấm).",
+            "time": 45
+        },
+        {
+            "name": "Giai đoạn tạo quả thể",
+            "description": "Dưới điều kiện nhiệt độ và độ ẩm phù hợp, sợi nấm hình thành các mầm nấm nhỏ, phát triển thành nấm hương trưởng thành.",
+            "time": 10
+        },
+        {
+            "name": "Giai đoạn thu hoạch",
+            "description": "Nấm đạt kích thước và hương vị tối ưu, thường được thu hoạch khi mũ nấm vừa bung, trước khi tán rộng hoàn toàn.",
+            "time": 3
+        },
+        {
+            "name": "Giai đoạn nghỉ ngơi",
+            "description": "Giá thể được giữ ẩm để tái tạo dinh dưỡng, chuẩn bị cho đợt nấm tiếp theo.",
+            "time": 12
+        }
+    ]
+}
+
+### Lấy dữ liệu về loại nấm
+GET {{ADDRESS}}/1

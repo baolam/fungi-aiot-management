@@ -1,0 +1,13 @@
+@ADDRESS = http://localhost:3000/api/harvest
+@HARVEST_ID = R6STNA4tY
+
+### Tạo một vụ mùa mới
+POST {{ADDRESS}}
+Content-Type: application/json
+
+{
+    "fungiId" : 1
+}
+
+### Lấy thông tin vụ mùa
+GET {{ADDRESS}}/{{HARVEST_ID}}
