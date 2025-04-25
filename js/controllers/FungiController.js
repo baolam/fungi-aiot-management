@@ -1,4 +1,5 @@
 const { FungiInfor, FungiInforStage } = require("../models/fungi.infor.models");
+const Disease = require("../models/disease.models");
 
 class FungiController {
   async addNewFungi(req, res) {
@@ -75,6 +76,10 @@ class FungiController {
             {
               model: FungiInforStage,
               as: "stages",
+            },
+            {
+              model: Disease,
+              as: "diseases",
             },
           ],
         })

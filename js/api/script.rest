@@ -1,0 +1,16 @@
+@ADDRESS = http://localhost:3000/api/script
+
+##### Thêm một kịch bản mới
+POST {{ADDRESS}}
+Content-Type: application/json
+
+{
+    "fungiId" : 1,
+    "stageId" : 1,
+    "diseaseId" : -1,
+    "name" : "Đảm bảo duy trì điều kiện phát triển lý tưởng cho nấm hương giai đoạn nảy mầm",
+    "description" : "Chỉ đơn thuần là duy trì điều kiện phát triển"
+}
+
+### Lấy kịch bản
+GET {{ADDRESS}}/1/-1/1

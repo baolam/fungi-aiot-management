@@ -1,0 +1,21 @@
+@ADDRESS = http://localhost:3000/api/disease
+
+### Tạo một bệnh mới
+POST {{ADDRESS}}
+Content-Type: application/json
+
+{
+    "name" : "Bệnh mốc xanh ở nấm hương",
+    "description" : "Mốc xanh trên nấm hương là bệnh phổ biến do nấm Trichoderma spp. gây ra. Bệnh xuất hiện dưới dạng các mảng màu xanh lá cây trên bề mặt giá thể hoặc bịch phôi, gây ức chế sự phát triển của tơ nấm. Nếu không xử lý kịp thời, mốc xanh sẽ lan nhanh, làm giảm năng suất hoặc gây hỏng toàn bộ phôi nấm. Bệnh thường phát sinh trong điều kiện ẩm độ cao, vệ sinh kém và thông gió không đảm bảo. Phòng bệnh bằng cách tiệt trùng giá thể kỹ, giữ môi trường sạch, khô thoáng và loại bỏ ngay các bịch nhiễm bệnh để tránh lây lan",
+    "fungiId" : 1
+}
+
+### Tạo một bệnh mới
+POST {{ADDRESS}}
+Content-Type: application/json
+
+{
+    "name" : "Bệnh mốc trắng (White Mold) ở nấm hương",
+    "fungiId" : 1,
+    "description" : "Bệnh do nấm Cladobotryum spp. hoặc Trichoderma viride gây ra, thường xuất hiện khi độ ẩm cao và thông gió kém. Trên bề mặt bịch phôi hoặc giá thể sẽ xuất hiện lớp mốc trắng mịn như bông, lan nhanh và che phủ tơ nấm hương. Mốc trắng cạnh tranh dinh dưỡng và làm chết tơ nấm, khiến phôi nấm không thể ra tai. Tai nấm mọc lên có thể bị nhỏ, méo mó hoặc không phát triển. Biện pháp phòng bệnh gồm giữ độ ẩm ổn định, đảm bảo thông thoáng và loại bỏ phôi nhiễm bệnh sớm."
+}

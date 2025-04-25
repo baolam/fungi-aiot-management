@@ -1,23 +1,16 @@
 const { DataTypes } = require("sequelize");
 const Database = require("../config/database.config");
 
-const Script = Database.define("script", {
+const Disease = Database.define("disease", {
   id: {
-    autoIncrement: true,
     primaryKey: true,
+    autoIncrement: true,
     type: DataTypes.INTEGER,
+    allowNull: false,
   },
   fungiId: {
-    type: DataTypes.INTEGER,
     allowNull: false,
-  },
-  stageId: {
     type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  diseaseId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
   },
   name: {
     type: DataTypes.STRING,
@@ -29,4 +22,4 @@ const Script = Database.define("script", {
   },
 });
 
-module.exports = Script;
+module.exports = Disease;

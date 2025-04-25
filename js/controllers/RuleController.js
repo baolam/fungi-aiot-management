@@ -3,7 +3,7 @@ const Rule = require("../models/rule.models");
 class RuleController {
   async addRule(req, res) {
     try {
-      const { name, description, input_rule, output_rule } = req.body;
+      const { name, description, input_rule, output_rule, scriptId } = req.body;
 
       /// Để cho bài toán đơn giản, hãy giả sử biểu thức logic là hợp lí
       const exist =
@@ -19,6 +19,7 @@ class RuleController {
         description,
         input_rule,
         output_rule,
+        scriptId,
       });
 
       res.json({ message: "Add succesfully!" });

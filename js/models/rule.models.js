@@ -8,6 +8,10 @@ const Rule = Database.define("rule", {
     primaryKey: true,
     allowNull: false,
   },
+  scriptId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false,
