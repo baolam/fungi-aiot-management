@@ -43,7 +43,7 @@ Content-Type: application/json
 {
     "name" : "Kiểm soát nhiệt độ cho nấm hương giai đoạn nảy mầm",
     "description" : "Giai đoạn nảy mầm, nhiệt độ cần vừa đủ, không quá cao, không quá thấp. Dựa vào nhiệt độ mà kiểm soát",
-    "input_rule" : "~temperature['medium']",
+    "input_rule" : "~temperature['cool']",
     "output_rule" : "control_levels['slow']",
     "scriptId" : 1
 }

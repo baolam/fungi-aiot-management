@@ -26,6 +26,11 @@ require("./js/services/PythonManager").assginIo(
   io.of(process.env.PYTHON_NAMESPACE)
 );
 
+/// Nhánh gửi dữ liệu quản lí tức thì ở người dùng
+require("./js/services/UserManager").assginIo(
+  io.of(process.env.USER_NAMESPACE)
+);
+
 /// Đảm bảo duy trì kết nối tới thiết bị
 require("./js/services/DeviceManager");
 

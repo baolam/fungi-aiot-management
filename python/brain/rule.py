@@ -13,7 +13,8 @@ def retrieve_rules():
     _result = {}
 
     _rules = cursor.fetchall()
-    for _id, __, __, input_rule, output_rule, __, __ in _rules:
+
+    for _id, __, __, __, input_rule, output_rule, __, __ in _rules:
         # print(f"_id: {_id}, input_rule: {input_rule}, output_rule: {output_rule}")
         _result[_id] = Rule(eval(input_rule), eval(output_rule))
 

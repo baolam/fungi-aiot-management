@@ -1,0 +1,19 @@
+class UserManager {
+  constructor() {
+    this._io = null;
+  }
+
+  assginIo(io) {
+    this._io = io;
+    io.on("connection", (socket) => {
+      console.log("Having a connection from Python. Maintained!");
+
+      socket.on("disconnect", () => {
+        console.log("Disconnected to Python. Python emits this event!");
+      });
+    });
+  }
+}
+
+const user = new UserManager();
+module.exports = user;
