@@ -1,5 +1,32 @@
 const Rule = require("../models/rule.models");
 
-class RuleController {}
+class RuleController {
+  async addRule(req, res) {
+    try {
+      const { name, description, input_rule, output_rule } = req.body;
+
+      /// Để cho bài toán đơn giản, hãy giả sử biểu thức logic là hợp lí
+      const exist =
+        (await Rule.findOne({ where: { input_rule, name } })) !== null;
+      if (exist) {
+        return res.json({
+          message: "Failed to add new Rule due to its existence before!",
+        });
+      }
+
+      await Rule.create({
+        name,
+        description,
+        input_rule,
+        output_rule,
+      });
+
+      res.json({ message: "Add succesfully!" });
+    } catch (err) {
+      console.log(err);
+      res.json({ message: "Failed to add new Rule!" });
+    }
+  }
+}
 
 module.exports = RuleController;

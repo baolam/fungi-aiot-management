@@ -4,4 +4,6 @@ const Router = express.Router();
 const RuleController = require("../controllers/RuleController");
 const ruleController = new RuleController();
 
+Router.post("/", ruleController.addRule);
+
 module.exports = Router;

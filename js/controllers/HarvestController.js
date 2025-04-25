@@ -32,6 +32,7 @@ class HarvestController {
       }
 
       const { harvest } = req.params;
+
       const rawData = (
         await Harvest.findOne({
           where: { id: harvest },

@@ -1,40 +1,41 @@
 import skfuzzy as fuzz
+
 from ..constant import temperature, humidity, light, control_levels
 
 # Tiến hành định nghĩa các khái niệm
-# temperature["very_cold"]
-# temperature["cold"]
-# temperature["slightly_cold"]
-# temperature["cool"]
-# temperature["warm"]
-# temperature["slightly_hot"]
-# temperature["hot"]
-# temperature["very_hot"]
+temperature["very_cold"] = fuzz.trimf(temperature.universe, [0, 0, 3])
+temperature["cold"] = fuzz.trimf(temperature.universe, [0, 0, 3])
+temperature["slightly_cold"] = fuzz.trimf(temperature.universe, [0, 0, 3])
+temperature["cool"] = fuzz.trimf(temperature.universe, [0, 0, 3])
+temperature["warm"] = fuzz.trimf(temperature.universe, [0, 0, 3])
+temperature["slightly_hot"] = fuzz.trimf(temperature.universe, [0, 0, 3])
+temperature["hot"] = fuzz.trimf(temperature.universe, [0, 0, 3])
+temperature["very_hot"] = fuzz.trimf(temperature.universe, [0, 0, 3])
 
-# humidity["very_dry"]
-# humidity["dry"]
-# humidity["slightly_dry"]
-# humidity["moderately_dry"]
-# humidity["humid"]
-# humidity["wet"]
-# humidity["very_wet"]
+humidity["very_dry"] = fuzz.trimf(humidity.universe, [0, 0, 3])
+humidity["dry"] = fuzz.trimf(humidity.universe, [0, 0, 3])
+humidity["slightly_dry"] = fuzz.trimf(humidity.universe, [0, 0, 3])
+humidity["moderately_dry"] = fuzz.trimf(humidity.universe, [0, 0, 3])
+humidity["humid"] = fuzz.trimf(humidity.universe, [0, 0, 3])
+humidity["wet"] = fuzz.trimf(humidity.universe, [0, 0, 3])
+humidity["very_wet"] = fuzz.trimf(humidity.universe, [0, 0, 3])
 
-# light["completely_dark"]
-# light["very_dark"]
-# light["dark"]
-# light["dim"]
-# light["faint"]
-# light["medium"]
-# light["bright"]
-# light["very_bright"]
+light["completely_dark"] = fuzz.trimf(light.universe, [0, 0, 3])
+light["very_dark"] = fuzz.trimf(light.universe, [0, 0, 3])
+light["dark"] = fuzz.trimf(light.universe, [0, 0, 3])
+light["dim"] = fuzz.trimf(light.universe, [0, 0, 3])
+light["faint"] = fuzz.trimf(light.universe, [0, 0, 3])
+light["medium"] = fuzz.trimf(light.universe, [0, 0, 3])
+light["bright"] = fuzz.trimf(light.universe, [0, 0, 3])
+light["very_bright"] = fuzz.trimf(light.universe, [0, 0, 3])
 
-# control_levels["very_slow"]
-# control_levels["moderately_slow"]
-# control_levels["slow"]
-# control_levels["slightly_slow"]
-# control_levels["medium"]
-# control_levels["slightly_fast"]
-# control_levels["fast"]
-# control_levels["moderately_fast"]
-# control_levels["very_fast"]
-# control_levels["extermely_fast"]
+control_levels["very_slow"] = fuzz.trimf(control_levels.universe, [0, 0, 3])
+control_levels["moderately_slow"] = fuzz.trimf(control_levels.universe, [0, 0, 3])
+control_levels["slow"] = fuzz.trimf(control_levels.universe, [0, 0, 3])
+control_levels["slightly_slow"] = fuzz.trimf(control_levels.universe, [0, 0, 3])
+control_levels["medium"] = fuzz.trimf(control_levels.universe, [0, 0, 3])
+control_levels["slightly_fast"] = fuzz.trimf(control_levels.universe, [0, 0, 3])
+control_levels["fast"] = fuzz.trimf(control_levels.universe, [0, 0, 3])
+control_levels["moderately_fast"] = fuzz.trimf(control_levels.universe, [0, 0, 3])
+control_levels["very_fast"] = fuzz.trimf(control_levels.universe, [0, 0, 3])
+control_levels["extermely_fast"] = fuzz.trimf(control_levels.universe, [0, 0, 3])

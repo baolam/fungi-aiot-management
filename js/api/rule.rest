@@ -1,0 +1,23 @@
+@ADDRESS = http://localhost:3000/api/rule
+
+### Thêm rule mới
+POST {{ADDRESS}}
+Content-Type: application/json
+
+{
+    "name" : "Điều khiển quạt chỉ với nhiệt độ",
+    "description" : "Nếu nhiệt độ cao thì tiến hành quay quạt mạnh",
+    "input_rule" : "temperature['hot']",
+    "output_rule" : "control_levels['fast']"
+}
+
+### Thêm Rule mới
+POST {{ADDRESS}}
+Content-Type: application/json
+
+{
+    "name" : "Điều khiển độ sáng bóng đèn dựa trên độ ẩm và ánh sáng",
+    "description" : "Nếu như cường độ ánh sáng yếu và nhiệt độ không quá cao thì cho sáng đèn với mức trung bình",
+    "input_rule" : "light['dark'] & (~temperature['hot'] & ~temperature['very_hot'])",
+    "output_rule" : "control_levels['medium']"
+}
