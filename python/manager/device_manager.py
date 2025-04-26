@@ -1,13 +1,11 @@
-import paho.mqtt.client as mqtt
 import threading
 from ..constant import *
+from ..variable import device_client as client, interupt_event
 
 def on_connect(client, userdata, flags, rc):
     print("Connected to MQTT server successfully!")
     client.subscribe("device/data")
 
-
-client = mqtt.Client()
 client.on_connect = on_connect
 
 def connect_to_mqtt():

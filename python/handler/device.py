@@ -1,6 +1,8 @@
 from ..constant import *
 from ..manager.device_manager import client
 
+from ..variable import harvest
+
 def _on_device_data(payload : str):
     harvest_id, temperature, humidity, light = payload.split("|")
     

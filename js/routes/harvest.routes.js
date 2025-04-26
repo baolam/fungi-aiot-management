@@ -5,6 +5,7 @@ const HarvestController = require("../controllers/HarvestController");
 const harvestController = new HarvestController();
 
 Router.post("/", harvestController.createHarvest);
+Router.put("/stage", harvestController.updateStage);
 Router.get("/:harvest", harvestController.getHarvest);
 
 module.exports = Router;

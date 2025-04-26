@@ -1,5 +1,5 @@
 @ADDRESS = http://localhost:3000/api/harvest
-@HARVEST_ID = fUIx9HwqZ
+@HARVEST_ID = KZEEoWUMJ
 
 ### Tạo một vụ mùa mới
 POST {{ADDRESS}}
@@ -11,3 +11,12 @@ Content-Type: application/json
 
 ### Lấy thông tin vụ mùa
 GET {{ADDRESS}}/{{HARVEST_ID}}
+
+### Cập nhật giai đoạn phát triển tiếp theo
+PUT {{ADDRESS}}/stage
+Content-Type: application/json
+
+{
+    "id" : "{{HARVEST_ID}}",
+    "current_stage" : 1
+}

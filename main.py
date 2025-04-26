@@ -1,7 +1,8 @@
 import time
-from python.constant import *
 from python.program import stop_program, start_manager
-from python.handler.device import *
+from python.variable import interupt_event
+import python.handler.device
+import python.handler.harvest
 
 def main():
     try:

@@ -32,7 +32,7 @@ Content-Type: application/json
     "name" : "Kiểm soát cường độ ánh sáng cho nấm hương giai đoạn nảy mầm",
     "description" : "Giai đoạn nảy mầm, ánh sáng cần rất yếu thậm chí hạn chế. Dựa vào cường độ ánh sáng mà kiểm soát",
     "input_rule" : "~light['dark'] | ~light['completely_dark']",
-    "output_rule" : "control_levels['slow'] | control_levels['very_slow']",
+    "output_rule" : "control_levels['slow']",
     "scriptId" : 1
 }
 

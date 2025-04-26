@@ -13,6 +13,10 @@ class PythonManager {
       });
     });
   }
+
+  #getUserManager() {
+    return require("./UserManager");
+  }
 }
 
 const python = new PythonManager();

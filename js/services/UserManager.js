@@ -6,12 +6,16 @@ class UserManager {
   assginIo(io) {
     this._io = io;
     io.on("connection", (socket) => {
-      console.log("Having a connection from Python. Maintained!");
+      console.log("Having a connection from User. Maintained!");
 
       socket.on("disconnect", () => {
-        console.log("Disconnected to Python. Python emits this event!");
+        console.log("Disconnected to User. User emits this event!");
       });
     });
+  }
+
+  #getPythonManager() {
+    return require("./PythonManager");
   }
 }
 

@@ -1,7 +1,8 @@
 import sqlite3
 
 from skfuzzy.control import Rule
-from ..constant import *
+from ..constant import DATABASE_NAME
+from ..variable import temperature, humidity, light, control_levels
 
 conn = sqlite3.connect(DATABASE_NAME)
 
@@ -24,6 +25,7 @@ def disconnect_to_db():
     conn.close()
 
 ##### Tiến hành thực thi lấy các Rule đã lưu trữ
-print("Retrievint rules from database!")
-fuzzy_rules = retrieve_rules()
-print("Retrieve rules successfully!")
+# print("Retrievint rules from database!")
+# fuzzy_rules = retrieve_rules()
+# retrieve_rules()
+# print("Retrieve rules successfully!")

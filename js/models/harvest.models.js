@@ -18,6 +18,11 @@ const Harvest = Database.define("harvest", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  current_disease: {
+    /// Bệnh hiện tại của cây trồng ở vụ
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
 });
 
 module.exports = Harvest;

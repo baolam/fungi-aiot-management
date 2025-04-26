@@ -14,7 +14,12 @@ class HarvestController {
       }
 
       /// Mã current_stage là -1 (nghĩa là chưa khởi tạo)
-      await Harvest.create({ id, fungiId, current_stage: -1 });
+      await Harvest.create({
+        id,
+        fungiId,
+        current_stage: -1,
+        current_disease: -1,
+      });
 
       res.json({ message: "Add successfully!", id });
     } catch (err) {
@@ -61,6 +66,21 @@ class HarvestController {
     } catch (err) {
       console.log(err);
       res.json({});
+    }
+  }
+
+  async updateStage(req, res) {
+    try {
+      const { id, current_stage } = req.body;
+      const exist = (await Harvest.findOne({ where: { id } })) !== null;
+      if (!exist)
+        return res.json({ message: "Did't exist, failed to update!" });
+
+      await Harvest.update({ current_stage }, { where: { id } });
+      res.json({ message: "Update successfully!" });
+    } catch (err) {
+      console.log(err);
+      res.json({ message: "Failed to update!" });
     }
   }
 }

@@ -1,8 +1,10 @@
 import sys
 import signal
-from .constant import *
-from .manager.js_manager import disconnect_to_js, sio, js_thread
-from .manager.device_manager import disconnect_to_mqtt, client, device_thread
+
+from .constant import NAMESPACE
+from .variable import js_sio as sio, device_client as client, interupt_event
+from .manager.js_manager import disconnect_to_js, js_thread
+from .manager.device_manager import disconnect_to_mqtt, device_thread
 from .brain.rule import disconnect_to_db
 
 def on_disconnect_to_js():
