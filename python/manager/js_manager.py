@@ -8,8 +8,7 @@ sio = socketio.Client()
 
 def disconnect_to_js():
     interupt_event.set()
-    if sio.connected:
-        sio.disconnect()
+    sio.shutdown()
 
 def connect_to_js():
     sio.connect(SERVER_ADDRESS, namespaces=[NAMESPACE])

@@ -2,9 +2,10 @@ import paho.mqtt.client as mqtt
 import socketio
 import numpy as np
 import threading
+from typing import Dict
 from skfuzzy import control as ctrl
 
-harvest = {}
+harvest : Dict[int, ctrl.ControlSystemSimulation] = {}
 fuzzy_rules = {}
 
 interupt_event = threading.Event()
@@ -15,9 +16,9 @@ temperature = ctrl.Antecedent(np.arange(0, 50, 0.2), "temperature")
 humidity = ctrl.Antecedent(np.arange(0, 100, 0.5), "humidity")
 light = ctrl.Antecedent(np.arange(0, 100, 0.5), "light")
 
-# fan_speed = ctrl.Antecedent(np.arange(0, 100, 0.5), "fan_speed")
-# brightness = ctrl.Antecedent(np.arange(0, 100, 0.5), "brightness")
-control_levels = ctrl.Antecedent(np.arange(0, 100, 0.5), "control_levels")
+fan_speed = ctrl.Consequent(np.arange(0, 100, 0.5), "fan_speed")
+brightness = ctrl.Consequent(np.arange(0, 100, 0.5), "brightness")
+control_levels = ctrl.Consequent(np.arange(0, 100, 0.5), "control_levels")
 
 from .brain.definition import *
 from .brain.rule import retrieve_rules

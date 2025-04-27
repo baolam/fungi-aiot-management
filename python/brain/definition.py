@@ -1,6 +1,6 @@
 import skfuzzy as fuzz
 
-from ..variable import temperature, humidity, light, control_levels
+from ..variable import temperature, humidity, light, control_levels, fan_speed, brightness
 
 # Tiến hành định nghĩa các khái niệm
 temperature["very_cold"] = fuzz.trimf(temperature.universe, [0, 0, 3])
