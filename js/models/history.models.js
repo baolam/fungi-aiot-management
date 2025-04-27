@@ -12,7 +12,7 @@ const HarvestControlHistory = Database.define("control_hisotry", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  led_intensity: {
+  brightness: {
     /// Mức độ sáng
     type: DataTypes.NUMBER,
     allowNull: false,

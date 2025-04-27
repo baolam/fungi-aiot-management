@@ -26,8 +26,8 @@ class DeviceManager {
     this._client.subscribe("device/initalize");
   }
 
-  async #onTopicReviceData(data) {
-    const message = String(data).split("|");
+  async #onTopicReviceData(_data) {
+    const message = String(_data).split("|");
     if (message.length !== 4) {
       console.log("Wrong format message!");
       return;
@@ -51,8 +51,8 @@ class DeviceManager {
     this.#getUserManager()._io.emit("new-data", data);
   }
 
-  async #onTopicControlData(data) {
-    const message = String(data).split("|");
+  async #onTopicControlData(_data) {
+    const message = String(_data).split("|");
     if (message.length !== 4) {
       console.log("Wrong format message!");
       return;
@@ -61,15 +61,15 @@ class DeviceManager {
     const harvestId = message[0];
     const brightness = parseFloat(message[1]);
     const water = parseFloat(message[2]);
-    const led_intensity = parseFloat(message[3]);
+    const fan = parseFloat(message[3]);
 
-    if (isNaN(brightness) || isNaN(water) || isNaN(led_intensity)) return;
+    if (isNaN(brightness) || isNaN(water) || isNaN(fan)) return;
 
     console.log(
-      `Harvest Id: ${harvestId}, Brightness: ${brightness}, Water: ${water}, Light: ${led_intensity}`
+      `Harvest Id: ${harvestId}, Brightness: ${brightness}, Water: ${water}, Fan: ${fan}`
     );
 
-    const data = { harvest: harvestId, brightness, water, led_intensity };
+    const data = { harvest: harvestId, brightness, water, fan };
     await HarvestControlHistory.create(data);
 
     /// Gửi dữ liệu lên quản lí
