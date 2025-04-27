@@ -26,7 +26,7 @@ def _on_device_data(payload : str):
         control_system.compute()
 
         # Trying to show data
-        consequents = [consequent.label for consequent in control_system.ctrl.consequents]
+        consequents = [consequent for consequent in control_system.output.keys()]
         outputs = {
             "fan_speed" : -1, # Mã giữ nguyên giá trị trước đó
             "brightness" : -1,

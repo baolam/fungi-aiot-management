@@ -9,7 +9,7 @@ Content-Type: application/json
     "description" : "Nếu nhiệt độ cao thì tiến hành quay quạt mạnh",
     "input_rule" : "temperature['hot']",
     "output_rule" : "control_levels['fast']",
-    "scriptId" : -1
+    "scriptId" : 1
 }
 
 ### Thêm Rule mới
@@ -19,31 +19,31 @@ Content-Type: application/json
 {
     "name" : "Điều khiển độ sáng bóng đèn dựa trên độ ẩm và ánh sáng",
     "description" : "Nếu như cường độ ánh sáng yếu và nhiệt độ không quá cao thì cho sáng đèn với mức trung bình",
-    "input_rule" : "light['dark'] & (~temperature['hot'] & ~temperature['very_hot'])",
+    "input_rule" : "light['dark'] & (~temperature['hot'] | ~temperature['very_hot'])",
     "output_rule" : "control_levels['medium']",
-    "scriptId" : -1
-}
-
-### Thêm Rule mới
-POST {{ADDRESS}}
-Content-Type: application/json
-
-{
-    "name" : "Kiểm soát cường độ ánh sáng cho nấm hương giai đoạn nảy mầm",
-    "description" : "Giai đoạn nảy mầm, ánh sáng cần rất yếu thậm chí hạn chế. Dựa vào cường độ ánh sáng mà kiểm soát",
-    "input_rule" : "~light['dark'] | ~light['completely_dark']",
-    "output_rule" : "control_levels['slow']",
     "scriptId" : 1
 }
 
 ### Thêm Rule mới
-POST {{ADDRESS}}
-Content-Type: application/json
+# POST {{ADDRESS}}
+# Content-Type: application/json
 
-{
-    "name" : "Kiểm soát nhiệt độ cho nấm hương giai đoạn nảy mầm",
-    "description" : "Giai đoạn nảy mầm, nhiệt độ cần vừa đủ, không quá cao, không quá thấp. Dựa vào nhiệt độ mà kiểm soát",
-    "input_rule" : "~temperature['cool']",
-    "output_rule" : "control_levels['slow']",
-    "scriptId" : 1
-}
+# {
+#     "name" : "Kiểm soát cường độ ánh sáng cho nấm hương giai đoạn nảy mầm",
+#     "description" : "Giai đoạn nảy mầm, ánh sáng cần rất yếu thậm chí hạn chế. Dựa vào cường độ ánh sáng mà kiểm soát",
+#     "input_rule" : "~light['dark'] | ~light['completely_dark']",
+#     "output_rule" : "control_levels['slow']",
+#     "scriptId" : 1
+# }
+
+### Thêm Rule mới
+# POST {{ADDRESS}}
+# Content-Type: application/json
+
+# {
+#     "name" : "Kiểm soát nhiệt độ cho nấm hương giai đoạn nảy mầm",
+#     "description" : "Giai đoạn nảy mầm, nhiệt độ cần vừa đủ, không quá cao, không quá thấp. Dựa vào nhiệt độ mà kiểm soát",
+#     "input_rule" : "~temperature['cool']",
+#     "output_rule" : "control_levels['slow']",
+#     "scriptId" : 1
+# }

@@ -10,6 +10,7 @@ def on_harvest_initalize(data):
         rules = data["rules"]
 
         interpret_rules = [fuzzy_rules[rule] for rule in rules]
+        
         system = ControlSystem(interpret_rules)
         harvest[_harvest] = ControlSystemSimulation(system)
 
