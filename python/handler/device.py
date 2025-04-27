@@ -40,7 +40,7 @@ def _on_device_data(payload : str):
         brightness = outputs["brightness"]
         control_levels = outputs["control_levels"]
 
-        resp = f"{brightness}|{control_levels}|{fan_speed}"
+        resp = f"{harvest_id}|{brightness}|{control_levels}|{fan_speed}"
         client.publish("device/control", resp)
 
     except Exception as e:

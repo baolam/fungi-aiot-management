@@ -2,8 +2,10 @@ const mqtt = require("mqtt");
 const mqtt_address = `http://${process.env.MQTT_HOST}:${process.env.MQTT_PORT}`;
 
 const Harvest = require("../models/harvest.models");
+const Data = require("../models/data.models");
 const Rule = require("../models/rule.models");
 const Script = require("../models/script.models");
+const { HarvestControlHistory } = require("../models/history.models");
 
 class DeviceManager {
   constructor() {
@@ -24,7 +26,7 @@ class DeviceManager {
     this._client.subscribe("device/initalize");
   }
 
-  #onTopicReviceData(data) {
+  async #onTopicReviceData(data) {
     const message = String(data).split("|");
     if (message.length !== 4) {
       console.log("Wrong format message!");
@@ -40,10 +42,38 @@ class DeviceManager {
     console.log(
       `Harvest Id: ${harvestId}, Temp: ${temperature}*C, Humid: ${humidity}%, Light: ${light}`
     );
+
+    /// Đã đảm bảo là HarvestID hợp lí he
+    const data = { temperature, humidity, light, harvest: harvestId };
+    await Data.create(data);
+
+    /// Tiến hành gửi ngược dữ liệu thông báo lên giao diện
+    this.#getUserManager()._io.emit("new-data", data);
   }
 
-  #onTopicControlData(data) {
-    console.log(data);
+  async #onTopicControlData(data) {
+    const message = String(data).split("|");
+    if (message.length !== 4) {
+      console.log("Wrong format message!");
+      return;
+    }
+
+    const harvestId = message[0];
+    const brightness = parseFloat(message[1]);
+    const water = parseFloat(message[2]);
+    const led_intensity = parseFloat(message[3]);
+
+    if (isNaN(brightness) || isNaN(water) || isNaN(led_intensity)) return;
+
+    console.log(
+      `Harvest Id: ${harvestId}, Brightness: ${brightness}, Water: ${water}, Light: ${led_intensity}`
+    );
+
+    const data = { harvest: harvestId, brightness, water, led_intensity };
+    await HarvestControlHistory.create(data);
+
+    /// Gửi dữ liệu lên quản lí
+    this.#getUserManager()._io.emit("new-control", data);
   }
 
   async #onTopicInitalizeDevice(harvest) {
