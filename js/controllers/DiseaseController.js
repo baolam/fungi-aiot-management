@@ -17,6 +17,18 @@ class DiseaseController {
       res.json({ message: "Failed to add, unexpected error!" });
     }
   }
+
+  async getDisease(req, res) {
+    try {
+      const { fungiId } = req.params;
+      const raw_data = await Disease.findAll({ where: { fungiId } });
+      const data = raw_data.map((raw) => raw.toJSON());
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+      res.json([]);
+    }
+  }
 }
 
 module.exports = DiseaseController;

@@ -1,5 +1,5 @@
 @ADDRESS = http://localhost:3000/api/harvest
-@HARVEST_ID = K8GluExb-
+@HARVEST_ID = VfxLTnoSU
 
 ### Tạo một vụ mùa mới
 POST {{ADDRESS}}

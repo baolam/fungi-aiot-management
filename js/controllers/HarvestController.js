@@ -1,6 +1,8 @@
 const shortid = require("shortid");
 const Harvest = require("../models/harvest.models");
 const Data = require("../models/data.models");
+const Disease = require("../models/disease.models");
+const { FungiInfor, FungiInforStage } = require("../models/fungi.infor.models");
 const { HarvestControlHistory } = require("../models/history.models");
 
 class HarvestController {
@@ -58,9 +60,29 @@ class HarvestController {
         })
       ).toJSON();
 
+      const additional_data = {
+        fungi: (
+          await FungiInfor.findOne({ where: { id: rawData.fungiId } })
+        ).toJSON(),
+        stage:
+          rawData.current_stage === -1
+            ? {}
+            : (
+                await FungiInforStage.findOne({
+                  where: { id: rawData.current_stage },
+                })
+              ).toJSON(),
+        disease:
+          rawData.current_disease === -1
+            ? {}
+            : await Disease.findOne({ where: { id: rawData.current_disease } }),
+      };
+
       rawData.data = rawData.data.map((point) => {
         return { ...point, updatedAt: undefined, id: undefined };
       });
+
+      rawData.additional = additional_data;
 
       res.json(rawData);
     } catch (err) {
@@ -78,6 +100,20 @@ class HarvestController {
 
       await Harvest.update({ current_stage }, { where: { id } });
       res.json({ message: "Update successfully!" });
+    } catch (err) {
+      console.log(err);
+      res.json({ message: "Failed to update!" });
+    }
+  }
+
+  async updateDisease(req, res) {
+    try {
+      const { id, current_disease } = req.body;
+      const exist = (await Harvest.findOne({ where: { id } })) !== null;
+      if (!exist)
+        return res.json({ message: "Did't exist, failed to update!" });
+
+      await Harvest.update({ current_disease }, { where: { id } });
     } catch (err) {
       console.log(err);
       res.json({ message: "Failed to update!" });

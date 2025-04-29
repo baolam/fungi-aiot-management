@@ -22,12 +22,11 @@ class ScriptController {
     }
   }
 
-  async getScript(req, res) {
+  async _getScriptBy(req, res, where_attr) {
     try {
-      const { fungiId, diseaseId, stageId } = req.params;
       const data = (
         await Script.findOne({
-          where: { fungiId, diseaseId, stageId },
+          where: where_attr,
           include: [
             {
               model: Rule,
@@ -43,6 +42,16 @@ class ScriptController {
       console.log(err);
       return res.json({});
     }
+  }
+
+  async getScript(req, res) {
+    const { fungiId, diseaseId, stageId } = req.params;
+    await this._getScriptBy(req, res, { fungiId, diseaseId, stageId });
+  }
+
+  async getScriptByFungiId(req, res) {
+    const { fungiId } = req.params;
+    await this._getScriptBy(req, res, { fungiId });
   }
 }
 

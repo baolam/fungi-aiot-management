@@ -5,6 +5,8 @@ const { config } = require("dotenv");
 const express = require("express");
 const ip = require("ip");
 const socketio = require("socket.io");
+const cors = require("cors");
+const morgan = require("morgan");
 
 config({ path: path.join(__dirname, "config.env") });
 
@@ -13,13 +15,23 @@ const IPADDR = ip.address();
 
 const app = express();
 const server = http.createServer(app);
-const io = new socketio.Server(server);
+const io = new socketio.Server(server, {
+  cors: { origin: "*" },
+});
 
+app.use(cors({ origin: "*" }));
+app.use(morgan("common"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "dist")));
 
 /// Đảm bảo một số Route dùng cho xử lí đường dẫn
 app.use("/api", require("./js/routes/routes"));
+
+/// Kết nối với layout
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 
 /// Đảm bảo duy trì kết nối tới Python
 require("./js/services/PythonManager").assginIo(

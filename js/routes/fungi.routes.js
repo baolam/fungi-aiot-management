@@ -9,6 +9,7 @@ Router.post("/stage/:fungiId", (req, res) =>
   fungiController.addNewStages(req, res)
 );
 
+Router.get("/", fungiController.getAllFungis);
 Router.get("/:fungiId", fungiController.getFungiInfor);
 
 module.exports = Router;

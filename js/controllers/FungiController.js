@@ -84,7 +84,25 @@ class FungiController {
           ],
         })
       ).toJSON();
+
+      fungiInfor.stages = fungiInfor.stages.map((stage) => {
+        return { ...stage, fungiId: undefined };
+      });
+
+      fungiInfor.diseases = fungiInfor.diseases.length;
+
       res.json(fungiInfor);
+    } catch (err) {
+      console.log(err);
+      res.json({});
+    }
+  }
+
+  async getAllFungis(req, res) {
+    try {
+      const raw_data = await FungiInfor.findAll();
+      const data = raw_data.map((raw) => raw.toJSON());
+      res.json(data);
     } catch (err) {
       console.log(err);
       res.json({});

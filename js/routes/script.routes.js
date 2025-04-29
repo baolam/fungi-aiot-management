@@ -5,6 +5,11 @@ const ScriptController = require("../controllers/ScriptController");
 const scriptController = new ScriptController();
 
 Router.post("/", scriptController.addNewScript);
-Router.get("/:fungiId/:diseaseId/:stageId", scriptController.getScript);
+Router.get("/:fungiId", (req, res) =>
+  scriptController.getScriptByFungiId(req, res)
+);
+Router.get("/:fungiId/:diseaseId/:stageId", (req, res) =>
+  scriptController.getScript(req, res)
+);
 
 module.exports = Router;
