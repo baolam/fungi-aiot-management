@@ -31,8 +31,8 @@ class RuleController {
 
   async getRules(req, res) {
     try {
-      const { fungiId } = req.params;
-      const raw_data = await Rule.findAll({ where: { fungiId } });
+      const { scriptId } = req.params;
+      const raw_data = await Rule.findAll({ where: { scriptId } });
       const data = raw_data.map((raw) => raw.toJSON());
       res.json(data);
     } catch (err) {

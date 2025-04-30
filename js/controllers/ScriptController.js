@@ -50,8 +50,23 @@ class ScriptController {
   }
 
   async getScriptByFungiId(req, res) {
-    const { fungiId } = req.params;
-    await this._getScriptBy(req, res, { fungiId });
+    try {
+      const { fungiId } = req.params;
+      const raw_data = await Script.findAll({
+        where: { fungiId },
+        include: [
+          {
+            model: Rule,
+            as: "rules",
+          },
+        ],
+      });
+      const data = raw_data.map((raw) => raw.toJSON());
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+      res.json([]);
+    }
   }
 }
 
