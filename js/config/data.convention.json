@@ -1,0 +1,67 @@
+{
+    "temperature": {
+      "very_cold": [0, 0, 5],
+      "cold": [5, 6, 10],
+      "slightly_cold": [10, 11, 15],
+      "cool": [15, 16, 22],
+      "warm": [22, 23, 28],
+      "slightly_hot": [28, 29, 33],
+      "hot": [33, 34, 38],
+      "very_hot": [38, 39, 44],
+      "extremely_hot": [44, 50, 50]
+    },
+    "humidity": {
+      "very_dry": [0, 0, 20],
+      "dry": [20, 21, 35],
+      "slightly_dry": [35, 36, 45],
+      "moderately_humid": [45, 46, 60],
+      "humid": [60, 61, 75],
+      "wet": [75, 76, 90],
+      "very_wet": [90, 100, 100]
+    },
+    "light": {
+      "completely_dark": [0, 0, 5],
+      "very_dark": [5, 6, 15],
+      "dark": [15, 16, 30],
+      "dim": [30, 31, 45],
+      "faint": [45, 46, 55],
+      "medium": [55, 56, 70],
+      "bright": [70, 71, 85],
+      "very_bright": [85, 86, 95],
+      "blinding": [95, 100, 100]
+    },
+    "fan_speed": {
+      "very_slow": [0, 0, 5],
+      "moderately_slow": [5, 6, 15],
+      "slow": [15, 16, 25],
+      "slightly_slow": [25, 26, 35],
+      "medium": [35, 36, 50],
+      "slightly_fast": [50, 51, 65],
+      "fast": [65, 66, 75],
+      "moderately_fast": [75, 76, 85],
+      "very_fast": [85, 86, 95],
+      "extremely_fast": [95, 100, 100]
+    },
+    "control_levels": {
+      "very_low": [0, 0, 5],
+      "moderately_low": [5, 6, 15],
+      "low": [15, 16, 25],
+      "slightly_low": [25, 26, 35],
+      "medium": [35, 36, 50],
+      "slightly_high": [50, 51, 65],
+      "high": [65, 66, 75],
+      "moderately_high": [75, 76, 85],
+      "very_high": [85, 86, 95],
+      "extremely_high": [95, 100, 100]
+    },
+    "brightness": {
+      "completely_dark": [0, 0, 5],
+      "very_dim": [5, 6, 20],
+      "dim": [20, 21, 35],
+      "medium": [35, 36, 55],
+      "bright": [55, 56, 75],
+      "very_bright": [75, 76, 90],
+      "blinding": [90, 100, 100]
+    }
+  }
+  

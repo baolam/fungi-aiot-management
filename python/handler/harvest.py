@@ -12,7 +12,7 @@ def on_harvest_initalize(data):
         interpret_rules = [fuzzy_rules[rule] for rule in rules]
         
         system = ControlSystem(interpret_rules)
-        harvest[_harvest] = ControlSystemSimulation(system)
+        harvest[_harvest]["system"] = ControlSystemSimulation(system)
 
         print(f"Initalized control system for device responsed for harvest {_harvest} successfully!")
     except Exception as e:

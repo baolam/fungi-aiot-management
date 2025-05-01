@@ -5,6 +5,7 @@ const Data = require("./data.models");
 const Rule = require("./rule.models");
 const Disease = require("./disease.models");
 const Script = require("./script.models");
+const Notifications = require("./notification.models");
 
 /// Phần định nghĩa các mối quan hệ dữ liệu
 FungiInfor.hasMany(FungiInforStage, {
@@ -22,10 +23,10 @@ Harvest.hasMany(HarvestControlHistory, {
   as: "control",
 });
 
-// Harvest.hasOne(FungiInforStage, {
-//   foreignKey: "id",
-//   as: "stage",
-// });
+Harvest.hasMany(Notifications, {
+  foreignKey: "harvestId",
+  as: "notifications",
+});
 
 FungiInfor.hasMany(Disease, {
   foreignKey: "fungiId",
@@ -41,11 +42,6 @@ Script.hasMany(Rule, {
   foreignKey: "scriptId",
   as: "rules",
 });
-
-// Rule.belongsTo(Script, {
-//   foreignKey: "scriptId",
-//   as: "rules",
-// });
 
 async function connect() {
   try {

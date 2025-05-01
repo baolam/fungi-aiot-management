@@ -91,6 +91,41 @@ class HarvestController {
     }
   }
 
+  async getBriefHarvest(req, res) {
+    try {
+      const raw_data = await Harvest.findAll();
+      const data = raw_data.map((raw) => raw.toJSON());
+      for (let i = 0; i < data.length; i++) {
+        data[i].fungi = (
+          await FungiInfor.findOne({ where: { id: data[i].fungiId } })
+        ).toJSON().name;
+
+        if (data[i].current_stage !== -1) {
+          data[i].stage = (
+            await FungiInforStage.findOne({
+              where: { id: data[i].current_stage },
+            })
+          ).toJSON().name;
+        } else {
+          data[i].stage = "Not assigned";
+        }
+
+        if (data[i].current_disease !== -1) {
+          data[i].disease = (
+            await Disease.findOne({ where: { id: data[i].current_disease } })
+          ).toJSON().name;
+        } else {
+          data[i].disease = "Not assigned!";
+        }
+      }
+
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+      res.json([]);
+    }
+  }
+
   async updateStage(req, res) {
     try {
       const { id, current_stage } = req.body;

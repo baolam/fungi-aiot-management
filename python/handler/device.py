@@ -11,7 +11,7 @@ def _on_device_data(payload : str):
         humidity = float(humidity)
         light = float(light)
 
-        control_system = harvest[harvest_id]
+        control_system = harvest[harvest_id]["system"]
         antecedents = [antecedent.label  for antecedent in control_system.ctrl.antecedents]
         inputs = {
             "temperature" : temperature,
@@ -28,9 +28,9 @@ def _on_device_data(payload : str):
         # Trying to show data
         consequents = [consequent for consequent in control_system.output.keys()]
         outputs = {
-            "fan_speed" : -1, # Mã giữ nguyên giá trị trước đó
-            "brightness" : -1,
-            "control_levels" : -1
+            "fan_speed" : 0, # Mã giữ nguyên giá trị trước đó
+            "brightness" : 0,
+            "control_levels" : 0
         }
 
         for consequent in consequents:
@@ -40,7 +40,7 @@ def _on_device_data(payload : str):
         brightness = outputs["brightness"]
         control_levels = outputs["control_levels"]
 
-        resp = f"{harvest_id}|{brightness}|{control_levels}|{fan_speed}"
+        resp = f"{harvest_id}|{brightness:.2f}|{control_levels:.2f}|{fan_speed:.2f}"
         client.publish("device/control", resp)
 
     except Exception as e:

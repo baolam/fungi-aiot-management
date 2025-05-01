@@ -9,6 +9,10 @@ const { HarvestControlHistory } = require("../models/history.models");
 
 class DeviceManager {
   constructor() {
+    this.management = {
+      harvest: {},
+    };
+
     this._client = mqtt.connect(mqtt_address);
     this._client.on("connect", () => this.#onConnect());
     this._client.on("message", (topic, payload) =>
@@ -45,10 +49,10 @@ class DeviceManager {
 
     /// Đã đảm bảo là HarvestID hợp lí he
     const data = { temperature, humidity, light, harvest: harvestId };
-    await Data.create(data);
+    const resp = (await Data.create(data)).toJSON();
 
     /// Tiến hành gửi ngược dữ liệu thông báo lên giao diện
-    this.#getUserManager()._io.emit("new-data", data);
+    this.#getUserManager()._io.emit("new-data", resp);
   }
 
   async #onTopicControlData(_data) {
@@ -70,10 +74,10 @@ class DeviceManager {
     );
 
     const data = { harvest: harvestId, brightness, water, fan };
-    await HarvestControlHistory.create(data);
+    const resp = (await HarvestControlHistory.create(data)).toJSON();
 
     /// Gửi dữ liệu lên quản lí
-    this.#getUserManager()._io.emit("new-control", data);
+    this.#getUserManager()._io.emit("new-control", resp);
   }
 
   async #onTopicInitalizeDevice(harvest) {
@@ -108,6 +112,8 @@ class DeviceManager {
       /// Tiến hành gửi dữ liệu quản lí
       this.#getPythonManager()._io.emit("harvest-initalize", expected_result);
       this.#getUserManager()._io.emit("harvest-online", harvest);
+
+      this.management.harvest[harvest] = {};
     } catch (err) {
       console.log("Unexpected error.");
       console.log(err);
@@ -126,14 +132,17 @@ class DeviceManager {
       case "device/initalize":
         this.#onTopicInitalizeDevice(payload.toString());
         break;
+      case "device/offline":
+        this.#onOffline(payload.toString());
+        break;
       default:
         console.log("No assign topic handler!");
         break;
     }
   }
 
-  #onOffline() {
-    console.log("Mosquitto offline!");
+  #onOffline(harvest) {
+    console.log("Mosquitto offline!, ", harvest);
   }
 
   #getUserManager() {

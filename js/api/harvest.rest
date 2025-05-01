@@ -12,6 +12,9 @@ Content-Type: application/json
 ### Lấy thông tin vụ mùa
 GET {{ADDRESS}}/{{HARVEST_ID}}
 
+### Lấy thông tin vụ mùa chung
+GET {{ADDRESS}}
+
 ### Cập nhật giai đoạn phát triển tiếp theo
 PUT {{ADDRESS}}/stage
 Content-Type: application/json

@@ -2,10 +2,10 @@ import paho.mqtt.client as mqtt
 import socketio
 import numpy as np
 import threading
-from typing import Dict
+from typing import Dict, Any
 from skfuzzy import control as ctrl
 
-harvest : Dict[int, ctrl.ControlSystemSimulation] = {}
+harvest : Dict[int, Dict[str, Any | ctrl.ControlSystemSimulation]] = {}
 fuzzy_rules = {}
 
 interupt_event = threading.Event()
