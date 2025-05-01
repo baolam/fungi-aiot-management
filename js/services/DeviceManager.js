@@ -113,7 +113,9 @@ class DeviceManager {
       this.#getPythonManager()._io.emit("harvest-initalize", expected_result);
       this.#getUserManager()._io.emit("harvest-online", harvest);
 
-      this.management.harvest[harvest] = {};
+      this.management.harvest[harvest] = {
+        python: expected_result,
+      };
     } catch (err) {
       console.log("Unexpected error.");
       console.log(err);

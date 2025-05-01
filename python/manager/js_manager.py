@@ -16,6 +16,7 @@ def connect_to_js():
 
 def on_connect_to_js():
     print("Connected to JS!")
+    sio.emit("finish-initalize", namespace=NAMESPACE)
 
 sio.on("connect", handler=on_connect_to_js, namespace=NAMESPACE)
 

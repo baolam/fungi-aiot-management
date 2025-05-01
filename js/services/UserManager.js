@@ -24,8 +24,11 @@ class UserManager {
   }
 
   #onManualControl(data) {
-    // this.#getDeviceManager()._client.emit("device/control", data);
-    console.log(data);
+    const { harvestId, water, fan, brightness } = data;
+    const formatMessage = `${harvestId}|${brightness}|${water}|${fan}`;
+
+    console.log(`Send message ${formatMessage} to device!`);
+    this.#getDeviceManager()._client.publish("device/control", formatMessage);
   }
 
   #getPythonManager() {
