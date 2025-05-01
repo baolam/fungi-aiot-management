@@ -1,0 +1,19 @@
+h4 {
+  color: red;
+}
+
+.long-description {
+  white-space: normal;
+  word-break: keep-all;
+  max-width: fit-content;
+}
+
+.name {
+  white-space: normal;
+  word-break: keep-all;
+  max-width: 150px;
+}
+
+.emphasize {
+  color: blue;
+}
