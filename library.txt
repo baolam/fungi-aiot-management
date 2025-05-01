@@ -1,0 +1,6 @@
+llama-index
+sqlalchemy
+google-generativeai
+llama-index-llms-gemini
+llama-index-embeddings-huggingface
+llama-index-readers-database
