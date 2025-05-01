@@ -18,7 +18,7 @@ class DeviceManager {
     this._client.on("message", (topic, payload) =>
       this.#onMessage(topic, payload)
     );
-    this._client.on("offline", () => this.#onOffline());
+    this._client.on("offline", () => this.#onOffline("unknown"));
   }
 
   #onConnect() {

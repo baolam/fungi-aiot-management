@@ -24,7 +24,8 @@ class UserManager {
   }
 
   #onManualControl(data) {
-    this.#getDeviceManager()._client.emit("device/control", data);
+    // this.#getDeviceManager()._client.emit("device/control", data);
+    console.log(data);
   }
 
   #getPythonManager() {
