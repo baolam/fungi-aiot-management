@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
+import AddNewRule from './utils/AddNewRule';
 
 const RuleScript = ({ rules }) => {
+  const [openAddNewRule, setOpenAddNewRule] = useState(false);
+
   return (
     <>
       <Table striped bordered hover>
@@ -26,9 +29,10 @@ const RuleScript = ({ rules }) => {
           })}
         </tbody>
       </Table>
-      <Button className="w-100" variant="outline-success">
+      <Button className="w-100" variant="outline-success" onClick={() => setOpenAddNewRule(true)}>
         Add new rule
       </Button>
+      <AddNewRule open={openAddNewRule} onClose={() => setOpenAddNewRule(false)} />
     </>
   );
 };

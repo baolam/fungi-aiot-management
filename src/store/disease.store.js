@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  chosenDiseaseId: null,
+  chosenDiseaseId: -1,
 };
 
 const diseaseSlice = createSlice({

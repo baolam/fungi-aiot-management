@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Col, Row, Tab } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getScript } from '../apis/script.api';
 import ListGroups from '../components/ListGroups';
 import OverallScript from '../functions/script/OverallScript';
 import RuleScript from '../functions/script/RuleScript';
+import { updateRefreshCode } from '../store/script.store';
 
 const functions = [
   {
@@ -57,10 +58,13 @@ const functions = [
 const Script = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [scriptData, setScriptData] = useState(null);
+
   const fungiId = useSelector((state) => state.fungi.chosenFungiId);
   const scriptId = useSelector((state) => state.script.chosenScriptId);
+  const refreshCode = useSelector((state) => state.script.refreshCode);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
+  const __update_script = useCallback(() => {
     if (fungiId === null) return;
 
     setIsLoading(true);
@@ -74,6 +78,17 @@ const Script = () => {
         setScriptData({});
       });
   }, [fungiId]);
+
+  useEffect(() => {
+    __update_script();
+  }, [__update_script]);
+
+  useEffect(() => {
+    if (refreshCode !== -1) {
+      __update_script();
+      dispatch(updateRefreshCode(-1));
+    }
+  }, [dispatch, refreshCode, __update_script]);
 
   const rules = [];
   if (scriptData !== null && scriptId !== null) {
@@ -102,7 +117,7 @@ const Script = () => {
               </h5>
               <Tab.Content>
                 <Tab.Pane eventKey="#overall">
-                  <OverallScript script={scriptData} />
+                  <OverallScript script={scriptData} fungiId={fungiId} />
                 </Tab.Pane>
                 <Tab.Pane eventKey="#overall-rules">
                   <h5 className="text-center emphasize">

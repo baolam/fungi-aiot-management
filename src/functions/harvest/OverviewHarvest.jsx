@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Alert, Button } from 'react-bootstrap';
 import { format, differenceInDays } from 'date-fns';
 import { useSelector } from 'react-redux';
+import DiagnoseModal from './utils/DiagnoseModal';
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
 const OverviewHarvest = ({ harvest }) => {
   const { fungi, stage, disease } = harvest.additional;
   const harvests = useSelector((state) => state.harvest.onlineDevices);
+  const [openDiagnoseModal, setOpenDiagnoseModal] = useState(false);
+
   const createdAt = new Date(harvest.createdAt);
   const overDueDated = new Date(createdAt.getTime() + stage.time * MS_PER_DAY);
 
@@ -44,14 +47,19 @@ const OverviewHarvest = ({ harvest }) => {
       <h4 className="text-center">Disease</h4>
       {disease.name !== undefined && (
         <>
-          <Alert>{disease.name}</Alert>
+          <Alert variant="success">{disease.name}</Alert>
           <Alert>{disease.description}</Alert>
         </>
       )}
       {disease.name === undefined && <p>No disease found!</p>}
-      <Button variant="outline-danger" className="w-100">
+      <Button variant="outline-danger" className="w-100" onClick={() => setOpenDiagnoseModal(true)}>
         Diagnose disease
       </Button>
+      <DiagnoseModal
+        open={openDiagnoseModal}
+        onClose={() => setOpenDiagnoseModal(false)}
+        harvestId={harvest.id}
+      />
     </>
   );
 };

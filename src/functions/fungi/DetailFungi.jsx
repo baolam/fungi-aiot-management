@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getFungiDetail } from '../../apis/fungi.api';
 import { Alert, Button, Table } from 'react-bootstrap';
+import { updateStage } from '../../store/fungi.store';
 
 const DetailFungi = () => {
   const fungiId = useSelector((state) => state.fungi.chosenFungiId);
+  const stageId = useSelector((state) => state.fungi.chosenStageId);
 
   const [detailInfor, setDetailInfor] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsLoading(true);
@@ -55,7 +58,13 @@ const DetailFungi = () => {
             <tbody>
               {detailInfor.stages.map((stage, idx) => {
                 return (
-                  <tr key={idx}>
+                  <tr
+                    key={idx}
+                    className={stageId === stage.id ? 'table-success' : ''}
+                    onClick={() => {
+                      dispatch(updateStage(stage.id));
+                    }}
+                  >
                     <td>{stage.id}</td>
                     <td>{stage.name}</td>
                     <td>{stage.time}</td>

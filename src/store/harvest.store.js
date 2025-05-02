@@ -6,6 +6,7 @@ const initialState = {
   // control: [],
   // notifications: [],
   onlineDevices: {},
+  refreshCode: -1,
 };
 
 const harvestSlice = createSlice({
@@ -21,8 +22,12 @@ const harvestSlice = createSlice({
     initalizeOnlineDevices: (state, data) => {
       state.onlineDevices = { ...data.payload };
     },
+    updateRefreshCode: (state, data) => {
+      state.refreshCode = data.payload;
+    },
   },
 });
 
-export const { updateChosenId, addOnline, initalizeOnlineDevices } = harvestSlice.actions;
+export const { updateChosenId, addOnline, initalizeOnlineDevices, updateRefreshCode } =
+  harvestSlice.actions;
 export default harvestSlice.reducer;

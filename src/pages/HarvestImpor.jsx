@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Col, Row, Tab } from 'react-bootstrap';
 import ListGroups from '../components/ListGroups';
 import { useParams } from 'react-router-dom';
@@ -8,6 +8,9 @@ import OverviewHarvest from '../functions/harvest/OverviewHarvest';
 import DataHarvest from '../functions/harvest/DataHarvest';
 import ControlHistory from '../functions/harvest/ControlHistory';
 import ManualControl from '../functions/harvest/ManualControl';
+import HarvestAssistant from '../functions/harvest/HarvestAssistant';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateRefreshCode } from '../store/harvest.store';
 
 const functions = [
   {
@@ -18,6 +21,11 @@ const functions = [
   {
     called: 'Overview',
     href: '#overview',
+    disabled: false,
+  },
+  {
+    called: 'Assistant',
+    href: '#assistant',
     disabled: false,
   },
   {
@@ -58,9 +66,11 @@ const HarvestImpor = () => {
   const [harvestData, setHarvestData] = useState(null);
   const [data, setData] = useState([]);
   const [control, setControl] = useState([]);
+  const refreshCode = useSelector((state) => state.harvest.refreshCode);
+  const dispatch = useDispatch();
   const socket = useSocket();
 
-  useEffect(() => {
+  const __update_harvest = useCallback(() => {
     setIsLoading(true);
     getHarvest(id)
       .then((data) => {
@@ -74,6 +84,17 @@ const HarvestImpor = () => {
         console.log(err);
       });
   }, [id]);
+
+  useEffect(() => {
+    __update_harvest();
+  }, [__update_harvest]);
+
+  useEffect(() => {
+    if (refreshCode !== -1) {
+      __update_harvest();
+      dispatch(updateRefreshCode(-1));
+    }
+  }, [dispatch, refreshCode, __update_harvest]);
 
   useEffect(() => {
     if (socket === null) return;
@@ -113,6 +134,9 @@ const HarvestImpor = () => {
                 </Tab.Pane>
                 <Tab.Pane eventKey="#control-history">
                   <ControlHistory history={control} />
+                </Tab.Pane>
+                <Tab.Pane eventKey="#assistant">
+                  <HarvestAssistant />
                 </Tab.Pane>
                 <Tab.Pane eventKey="#manual-control">
                   <ManualControl

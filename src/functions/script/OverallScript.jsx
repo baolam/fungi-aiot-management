@@ -1,11 +1,23 @@
-import React from 'react';
-import { Button, Table } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Alert, Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateChosenId } from '../../store/script.store';
+import AddNewScriptModal from './utils/AddNewScriptModal';
 
-const OverallScript = ({ script }) => {
+const OverallScript = ({ script, fungiId }) => {
   const scriptId = useSelector((state) => state.script.chosenScriptId);
+  const stageId = useSelector((state) => state.fungi.chosenStageId);
+  const diseaseId = useSelector((state) => state.disease.chosenDiseaseId);
+
+  const [openAddNewScript, setOpenAddNewScript] = useState(false);
+
   const dispatch = useDispatch();
+  const existedBefore = (() => {
+    for (let i = 0; i < script.length; i++) {
+      if (script[i].diseaseId === diseaseId && script[i].stageId === stageId) return true;
+    }
+    return false;
+  })();
 
   return (
     <>
@@ -40,9 +52,30 @@ const OverallScript = ({ script }) => {
           })}
         </tbody>
       </Table>
-      <Button variant="outline-success" className="w-100">
+      {!existedBefore && (
+        <Alert variant="danger">
+          There're no script assigned for your chosen, DiseaseId: {diseaseId}, StageId: {stageId}
+        </Alert>
+      )}
+      <Button
+        variant="outline-success"
+        className="w-100"
+        disabled={existedBefore}
+        onClick={() => {
+          setOpenAddNewScript(true);
+        }}
+      >
         Add new script
       </Button>
+      <AddNewScriptModal
+        open={openAddNewScript}
+        onClose={() => {
+          setOpenAddNewScript(false);
+        }}
+        diseaseId={diseaseId}
+        stageId={stageId}
+        fungiId={fungiId}
+      />
     </>
   );
 };
