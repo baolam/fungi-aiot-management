@@ -11,4 +11,12 @@ def on_diagnose_disease(data):
         resp = []
     js_sio.emit("diagnose-disease-result", resp, namespace=NAMESPACE)
 
+def on_query(data):
+    harvest_id = data["harvestId"]
+    js_sio.emit("query-result", {
+        "harvestId" : harvest_id,
+        "response" : query(harvest_id, data["query"])
+    }, namespace=NAMESPACE)
+
 js_sio.on("diagnose-disease", handler=on_diagnose_disease, namespace=NAMESPACE)
+js_sio.on("query", handler=on_query, namespace=NAMESPACE)

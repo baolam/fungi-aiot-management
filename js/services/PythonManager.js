@@ -16,6 +16,8 @@ class PythonManager {
         this.#onHandlingDiagnoseDisease(resp)
       );
 
+      socket.on("query-result", (resp) => this.#onHandlingQueryInfor(resp));
+
       socket.on("disconnect", () => {
         console.log("Disconnected to Python. Python emits this event!");
       });
@@ -52,6 +54,10 @@ class PythonManager {
     }
 
     this.#getUserManager()._io.emit("diagnose-disease", result);
+  }
+
+  async #onHandlingQueryInfor(resp) {
+    this.#getUserManager()._io.emit("query", resp);
   }
 
   #getUserManager() {

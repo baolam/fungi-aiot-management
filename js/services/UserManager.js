@@ -21,6 +21,10 @@ class UserManager {
         this.#getPythonManager()._io.emit("diagnose-disease", data);
       });
 
+      socket.on("query-curious", (queryInfor) => {
+        this.#getPythonManager()._io.emit("query", queryInfor);
+      });
+
       socket.on("disconnect", () => {
         console.log("Disconnected to User. User emits this event!");
       });

@@ -6,7 +6,9 @@ from .documents import general_tool, diagnose_tool, llm
 
 qa_template = PromptTemplate("""
     Bạn là một trợ lí nông nghiệp có khả năng trả lời các thông tin truy vấn về mùa vụ được phụ trách. \n
-    Bạn hãy trả lời truy vấn của người dùng theo ID của mùa vụ được cung cấp {harvest_id} và dựa trên thông tin lấy được từ ngữ cảnh {context_str} \n.
+    Bạn hãy trả lời truy vấn của người dùng theo ID của mùa vụ được cung cấp {harvest_id}. \n
+    Ngoài ra hãy trả lời dựa trên thông tin lấy được từ ngữ cảnh {context_str} và một phần nguồn ngoài \n.
+    Hãy trả lời mà không dùng định dạng markdown. \n
     Đây là truy vấn: {query_str}. \n
     Trả lời:
 """)
