@@ -19,8 +19,8 @@ class HarvestController {
       await Harvest.create({
         id,
         fungiId,
-        current_stage: -1,
-        current_disease: -1,
+        current_stage: 0,
+        current_disease: 0,
       });
 
       res.json({ message: "Add successfully!", id });
