@@ -20,6 +20,6 @@ scripts_query = f"""SELECT id AS scriptId, name, description from scripts"""
 
 rules_query = f"""SELECT scriptId, name, description from rules"""
 
-harvests_query = f"""SELECT id as harvestId, fungiId, current_stage, current_disease from harvests"""
+harvests_query = f"""SELECT id as harvestId, fungiId, current_stage as stageId, current_disease as diseaseId from harvests"""
 
 summary_queries = [fungi_infors_query, fungi_stages_query, disease_query, scripts_query, rules_query, harvests_query]

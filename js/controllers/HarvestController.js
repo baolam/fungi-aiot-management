@@ -15,7 +15,7 @@ class HarvestController {
         return res.json({ message: "Failed to create due to fungiId is NULL" });
       }
 
-      /// Mã current_stage là -1 (nghĩa là chưa khởi tạo)
+      /// Mã current_stage là 0 (nghĩa là chưa khởi tạo)
       await Harvest.create({
         id,
         fungiId,
@@ -65,7 +65,7 @@ class HarvestController {
           await FungiInfor.findOne({ where: { id: rawData.fungiId } })
         ).toJSON(),
         stage:
-          rawData.current_stage === -1
+          rawData.current_stage === 0
             ? {}
             : (
                 await FungiInforStage.findOne({
@@ -73,7 +73,7 @@ class HarvestController {
                 })
               ).toJSON(),
         disease:
-          rawData.current_disease === -1
+          rawData.current_disease === 0
             ? {}
             : await Disease.findOne({ where: { id: rawData.current_disease } }),
       };
@@ -100,7 +100,7 @@ class HarvestController {
           await FungiInfor.findOne({ where: { id: data[i].fungiId } })
         ).toJSON().name;
 
-        if (data[i].current_stage !== -1) {
+        if (data[i].current_stage !== 0) {
           data[i].stage = (
             await FungiInforStage.findOne({
               where: { id: data[i].current_stage },
@@ -110,7 +110,7 @@ class HarvestController {
           data[i].stage = "Not assigned";
         }
 
-        if (data[i].current_disease !== -1) {
+        if (data[i].current_disease !== 0) {
           data[i].disease = (
             await Disease.findOne({ where: { id: data[i].current_disease } })
           ).toJSON().name;
