@@ -1,8 +1,9 @@
 import time
-from python.program import stop_program, start_manager
-from python.variable import interupt_event
 import python.handler.device
 import python.handler.harvest
+import python.handler.chat
+from python.program import stop_program, start_manager
+from python.variable import interupt_event
 
 def main():
     try:

@@ -17,6 +17,10 @@ class UserManager {
 
       socket.on("manual-control", (data) => this.#onManualControl(data));
 
+      socket.on("diagnose-disease", (data) => {
+        this.#getPythonManager()._io.emit("diagnose-disease", data);
+      });
+
       socket.on("disconnect", () => {
         console.log("Disconnected to User. User emits this event!");
       });

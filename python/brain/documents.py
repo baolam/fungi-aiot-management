@@ -1,3 +1,4 @@
+print("Importing library for AI tasks....")
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.gemini import Gemini
 from llama_index.core import Settings

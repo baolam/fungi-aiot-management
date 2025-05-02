@@ -10,6 +10,7 @@ class RuleController {
         (await Rule.findOne({ where: { input_rule, name } })) !== null;
       if (exist) {
         return res.json({
+          err: true,
           message: "Failed to add new Rule due to its existence before!",
         });
       }
@@ -22,10 +23,10 @@ class RuleController {
         scriptId,
       });
 
-      res.json({ message: "Add succesfully!" });
+      res.json({ err: false, message: "Add succesfully!" });
     } catch (err) {
       console.log(err);
-      res.json({ message: "Failed to add new Rule!" });
+      res.json({ err: true, message: "Failed to add new Rule!" });
     }
   }
 

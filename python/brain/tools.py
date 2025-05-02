@@ -1,8 +1,8 @@
 # Default using query engine
-from ..constant import THRESHOLD_DIAGNOSE_DISEASE
-from .documents import general_tool, diagnose_tool, llm
 from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.core.prompts import PromptTemplate
+from ..constant import THRESHOLD_DIAGNOSE_DISEASE
+from .documents import general_tool, diagnose_tool, llm
 
 qa_template = PromptTemplate("""
     Bạn là một trợ lí nông nghiệp có khả năng trả lời các thông tin truy vấn về mùa vụ được phụ trách. \n
@@ -33,6 +33,6 @@ def diagnose_disease(sympthons):
         if _id not in hash_key:
             if node.get_score() >= THRESHOLD_DIAGNOSE_DISEASE:
                 hash_key.add(_id)
-                output.append((_id, node.get_score()))
+                output.append((_id, f'{node.get_score() * 100:.2f}'))
 
     return output

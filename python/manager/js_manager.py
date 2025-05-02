@@ -4,8 +4,6 @@ import socketio
 from ..constant import SERVER_ADDRESS, NAMESPACE
 from ..variable import js_sio as sio, interupt_event
 
-sio = socketio.Client()
-
 def disconnect_to_js():
     interupt_event.set()
     sio.shutdown()

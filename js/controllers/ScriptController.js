@@ -10,15 +10,19 @@ class ScriptController {
         null;
       if (exist) {
         return res.json({
+          err: true,
           message: "Failed to add new script, existed before!",
         });
       }
 
       await Script.create({ fungiId, diseaseId, stageId, name, description });
-      res.json({ message: "Add successfully!" });
+      res.json({ err: false, message: "Add successfully!" });
     } catch (err) {
       console.log(err);
-      res.json({ message: "Failed to add new script!, unexpected error" });
+      res.json({
+        err: true,
+        message: "Failed to add new script!, unexpected error",
+      });
     }
   }
 

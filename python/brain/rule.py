@@ -1,5 +1,4 @@
 import sqlite3
-
 from skfuzzy.control import Rule
 from ..constant import DATABASE_NAME
 from ..variable import temperature, humidity, light, control_levels, fan_speed, brightness

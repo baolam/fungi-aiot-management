@@ -1,7 +1,7 @@
+from skfuzzy.control import ControlSystemSimulation, ControlSystem
 from ..manager.js_manager import sio
 from ..constant import NAMESPACE
 from ..variable import *
-from skfuzzy.control import ControlSystemSimulation, ControlSystem
 
 def on_harvest_initalize(data):
     try:

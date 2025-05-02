@@ -146,12 +146,16 @@ class HarvestController {
       const { id, current_disease } = req.body;
       const exist = (await Harvest.findOne({ where: { id } })) !== null;
       if (!exist)
-        return res.json({ message: "Did't exist, failed to update!" });
+        return res.json({
+          err: true,
+          message: "Did't exist, failed to update!",
+        });
 
       await Harvest.update({ current_disease }, { where: { id } });
+      res.json({ err: false, message: "Update successfully!" });
     } catch (err) {
       console.log(err);
-      res.json({ message: "Failed to update!" });
+      res.json({ err: true, message: "Failed to update!" });
     }
   }
 }

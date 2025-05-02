@@ -26,5 +26,4 @@ from .brain.rule import retrieve_rules
 
 print("Retrieving rule...")
 fuzzy_rules = retrieve_rules()
-print(fuzzy_rules)
 print("Retrieved successfully!")

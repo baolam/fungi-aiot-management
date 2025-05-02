@@ -1,3 +1,5 @@
+const Disease = require("../models/disease.models");
+
 class PythonManager {
   constructor() {
     this._io = null;
@@ -9,6 +11,10 @@ class PythonManager {
       console.log("Having a connection from Python. Maintained!");
 
       socket.on("finish-initalize", () => this.#onFinishInitalize(socket));
+
+      socket.on("diagnose-disease-result", (resp) =>
+        this.#onHandlingDiagnoseDisease(resp)
+      );
 
       socket.on("disconnect", () => {
         console.log("Disconnected to Python. Python emits this event!");
@@ -28,6 +34,24 @@ class PythonManager {
     for (let i = 0; i < harvests.length; i++) {
       socket.emit("harvest-initalize", infors[harvests[i]].python);
     }
+  }
+
+  async #onHandlingDiagnoseDisease(resp) {
+    if (resp.length === 0) {
+      this.#getUserManager()._io.emit("diagnose-disease", []);
+      return;
+    }
+
+    const result = [];
+    for (let i = 0; i < resp.length; i++) {
+      const disease = (
+        await Disease.findOne({ where: { id: resp[i][0] } })
+      ).toJSON();
+      const expected = { ...disease, score: resp[i][1] };
+      result.push(expected);
+    }
+
+    this.#getUserManager()._io.emit("diagnose-disease", result);
   }
 
   #getUserManager() {
