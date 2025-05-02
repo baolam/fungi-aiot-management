@@ -5,28 +5,25 @@ from ..constant import THRESHOLD_DIAGNOSE_DISEASE
 from .documents import general_tool, diagnose_tool, llm
 
 retrieve_template = PromptTemplate("""
-    Bạn trả về truy vấn dựa trên vụ mùa được cung cấp {harvest_id}. \n
-                                     
-    Truy vấn: {query_str}. \n
+Tìm thông tin liên quan đến vụ mùa có ID: {harvest_id}, dựa trên truy vấn sau: {query_str}
 """)
 
 qa_template = PromptTemplate("""
-    Bạn là một trợ lí nông nghiệp có khả năng trả lời các thông tin truy vấn về mùa vụ được phụ trách. \n
-                             
-    Bạn hãy trả lời truy vấn của người dùng theo ID của mùa vụ được cung cấp {harvest_id}. \n
-                             
-    Ngoài ra hãy trả lời dựa trên thông tin lấy được từ ngữ cảnh {context_str}\n.                  
-    
-    Hãy chắc chắn khi trả lời, bạn nắm rõ các lưu ý:
-    Lưu ý, nếu stageId là 0 nghĩa là chưa có giai đoạn nào được gán cho vụ mùa. Nếu diseaseId là 0 \
-    nghĩa là vụ mùa hiện tại không mắc bệnh nào hết. Thông tin liên quan đến ID chỉ dùng cho định hướng tìm kiếm, \ 
-    không dùng cho kết quả trả lời. Chỉ một kịch bản (Script) được thực thi. \n    
-    
-    Hãy trả lời mà không dùng định dạng markdown. \n
-                             
-    Đây là truy vấn: {query_str}. \n
-                             
-    Trả lời:
+Bạn là một trợ lý nông nghiệp, có nhiệm vụ cung cấp thông tin về mùa vụ dựa theo ID vụ mùa được cung cấp: {harvest_id}.
+
+Bạn cần trả lời dựa vào thông tin ngữ cảnh sau: {context_str}.
+
+Lưu ý quan trọng:
+- Nếu stageId bằng 0, nghĩa là mùa vụ chưa có giai đoạn nào được gán.
+- Nếu diseaseId bằng 0, nghĩa là mùa vụ hiện tại không mắc bệnh nào.
+- Các ID như harvest_id, stageId, diseaseId chỉ được dùng để tra cứu thông tin, không đưa vào nội dung trả lời.
+- Chỉ một kịch bản (Script) được thực thi trong một vụ mùa ứng theo giai đoạn, loại bệnh và loại nấm trồng.
+
+Vui lòng trả lời câu hỏi một cách tự nhiên, chính xác và không sử dụng định dạng Markdown.
+
+Truy vấn của người dùng: {query_str}
+
+Câu trả lời:
 """)
 
 general_retriever = general_tool.as_retriever(similarity_top_k=3)
