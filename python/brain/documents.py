@@ -13,7 +13,7 @@ print("Finished initalize model!")
 Settings.embed_model = embed_model
 Settings.llm = llm
 
-from .database import summary_queries, database, disease_query
+from .database import summary_queries, database, default_disease_query
 from ..constant import BUILT_STORAGE, VECTOR_STORAGE, DIAGNOSE_DISEASE_STORAGE
 
 from llama_index.core.node_parser import SemanticSplitterNodeParser
@@ -34,7 +34,7 @@ def build_overall():
     VectorStoreIndex(nodes).storage_context.persist(VECTOR_STORAGE)
 
 def build_diagnose_disease():
-    documents = database.load_data(disease_query, metadata_cols=["id"])
+    documents = database.load_data(default_disease_query, metadata_cols=["id"])
     nodes = pipeline.run(documents=documents, show_progress=True)
     VectorStoreIndex(nodes).storage_context.persist(DIAGNOSE_DISEASE_STORAGE)
 

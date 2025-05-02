@@ -10,13 +10,16 @@ fungi_infors_query = f"""
 """
 
 fungi_stages_query = f"""
-    SELECT name, fungiId, description from fungi_infor_stages
+    SELECT id AS stageId, name, fungiId, time as timeOfStage, description from fungi_infor_stages
 """
 
-disease_query = f"""SELECT id, fungiId, name, description from diseases"""
+default_disease_query = f"""SELECT id, fungiId, name, description from diseases"""
+disease_query = f"""SELECT id AS diseaseId, fungiId, name, description from diseases"""
 
-scripts_query = f"""SELECT id, name, description from scripts"""
+scripts_query = f"""SELECT id AS scriptId, name, description from scripts"""
 
 rules_query = f"""SELECT scriptId, name, description from rules"""
 
-summary_queries = [fungi_infors_query, fungi_stages_query, disease_query, scripts_query, rules_query]
+harvests_query = f"""SELECT id as harvestId, fungiId, current_stage, current_disease from harvests"""
+
+summary_queries = [fungi_infors_query, fungi_stages_query, disease_query, scripts_query, rules_query, harvests_query]
