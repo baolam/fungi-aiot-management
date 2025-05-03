@@ -13,6 +13,8 @@ class DeviceManager {
       harvest: {},
     };
 
+    console.log(mqtt_address);
+
     this._client = mqtt.connect(mqtt_address);
     this._client.on("connect", () => this.#onConnect());
     this._client.on("message", (topic, payload) =>
