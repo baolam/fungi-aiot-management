@@ -24,5 +24,17 @@ Content-Type: application/json
 #     "description" : "Chỉ đơn thuần là duy trì điều kiện phát triển"
 # }
 
+### Thêm một kịch bản mới
+POST {{ADDRESS}}
+Content-Type: application/json
+
+{
+    "fungiId" : 1,
+    "stageId" : 1,
+    "diseaseId" : 2,
+    "name" : "Kịch bản điều khiển kích hoạt khi và chỉ khi nấm hương phát triển ở giai đoạn nảy mầm và bị bệnh mốc trắng",
+    "description" : "Tiến hành đảm bảo duy trì điều kiện môi trường sang trạng thái bất lợi cho việc bị bệnh này"
+}
+
 ### Lấy kịch bản
 GET {{ADDRESS}}/1/1/-1

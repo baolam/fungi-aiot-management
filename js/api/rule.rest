@@ -25,6 +25,18 @@ Content-Type: application/json
 }
 
 ### Thêm Rule mới
+POST {{ADDRESS}}
+Content-Type: application/json
+
+{
+    "scriptId" : 1,
+    "name" : "Điều khiển cường độ ánh sáng, đảm bảo duy trì điều kiện phát triển tốt nhất cho nấm hương",
+    "description" : "Nếu ảnh sáng mạnh quá thì cho yếu lại",
+    "input_rule" : "light['very_bright'] | light['bright'] | light['blinding']",
+    "output_rule" : "brightness['very_dim']"
+}
+
+### Thêm Rule mới
 # POST {{ADDRESS}}
 # Content-Type: application/json
 
@@ -47,3 +59,5 @@ Content-Type: application/json
 #     "output_rule" : "control_levels['slow']",
 #     "scriptId" : 1
 # }
+
+### Thêm Rule cho bệnh mới

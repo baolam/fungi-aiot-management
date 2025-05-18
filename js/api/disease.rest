@@ -19,3 +19,53 @@ Content-Type: application/json
     "fungiId" : 1,
     "description" : "Bệnh do nấm Cladobotryum spp. hoặc Trichoderma viride gây ra, thường xuất hiện khi độ ẩm cao và thông gió kém. Trên bề mặt bịch phôi hoặc giá thể sẽ xuất hiện lớp mốc trắng mịn như bông, lan nhanh và che phủ tơ nấm hương. Mốc trắng cạnh tranh dinh dưỡng và làm chết tơ nấm, khiến phôi nấm không thể ra tai. Tai nấm mọc lên có thể bị nhỏ, méo mó hoặc không phát triển. Biện pháp phòng bệnh gồm giữ độ ẩm ổn định, đảm bảo thông thoáng và loại bỏ phôi nhiễm bệnh sớm."
 }
+
+### Tạo thêm bệnh mới
+POST {{ADDRESS}}
+Content-Type: application/json
+
+{
+    "name" : " Bệnh thối chân nấm",
+    "fungiId" : 1,
+    "description" : "Bệnh thối chân là một trong những bệnh thường gặp ở nấm hương trong giai đoạn phát triển tai nấm. Triệu chứng điển hình là phần gốc (chân) của tai nấm trở nên mềm nhũn, chuyển màu nâu đen hoặc nâu sẫm, có thể kèm theo mùi hôi khó chịu. Trong nhiều trường hợp, bệnh lây lan làm cho cả cụm nấm bị hư hỏng. Nguyên nhân chủ yếu là do vi khuẩn hoặc nấm mốc phát triển mạnh trong điều kiện độ ẩm quá cao, thông gió kém hoặc do nước đọng ở chân nấm. Việc thu hái không đúng cách (làm tổn thương gốc) cũng tạo điều kiện cho vi sinh vật xâm nhập."
+}
+
+### Tạo thêm bệnh mới
+POST {{ADDRESS}}
+Content-Type: application/json
+
+{
+    "fungiId" : 1,
+    "name" : "Tai nấm bị biến dạng",
+    "description" : "Tai nấm bị cong queo, méo mó, không phát triển cân đối, hoặc có dấu hiệu nứt nẻ, co lại là hiện tượng thường gặp khi điều kiện môi trường không ổn định. Nguyên nhân có thể do nhiệt độ dao động quá mức, thiếu ánh sáng phù hợp, độ ẩm không ổn định hoặc thông gió kém khiến nấm hô hấp không đều. Ngoài ra, biến dạng cũng có thể là hậu quả của việc sử dụng giống nấm chất lượng kém hoặc nhiễm khuẩn nhẹ."
+}
+
+### Tạo thêm một bệnh mới
+POST {{ADDRESS}}
+Content-Type: application/json
+
+{
+    "fungiId" : 1,
+    "name" : "Tai nấm bị vàng, khô hoặc úa",
+    "description" : "Tai nấm có thể xuất hiện màu vàng nhạt hoặc đốm úa, khô héo dần nếu điều kiện nuôi trồng không đáp ứng yêu cầu sinh lý của nấm. Triệu chứng thường thấy là mép tai nấm chuyển màu vàng, dần khô lại và cứng hơn bình thường. Nguyên nhân chính là thiếu ẩm trong không khí, ánh sáng trực tiếp quá mạnh hoặc nhiệt độ cao."
+}
+
+### Tạo thêm một bệnh mới
+POST {{ADDRESS}}
+Content-Type: application/json
+
+{
+    "fungiId" : 1,
+    "name" : "Nấm không mọc hoặc mọc chậm",
+    "description" : "Trong một số trường hợp, bịch phôi nấm không ra tai nấm dù đã đủ thời gian ủ, hoặc có tai nấm nhưng phát triển rất chậm, nhỏ và yếu. Hiện tượng này có thể bắt nguồn từ nhiều nguyên nhân: phôi bị nhiễm bệnh, giống nấm kém chất lượng, hoặc điều kiện môi trường chưa phù hợp (thiếu ẩm, nhiệt độ không đạt, ánh sáng không đủ). Ngoài ra, việc xử lý phôi chưa đạt hoặc canh tác sai kỹ thuật cũng góp phần gây ra tình trạng này."
+}
+
+### Thêm một bệnh mới
+POST {{ADDRESS}}
+Content-Type: application/json
+
+{
+    "fungiId" : 1,
+    "name" : "Bệnh vàng phôi (nhiễm khuẩn hoặc nấm mốc)",
+    "description" : "Phôi nấm chuyển màu vàng bất thường, phát triển không đồng đều, xuất hiện các mảng vàng hoặc nâu, thậm chí có thể bị chai cứng, không ra quả thể. Một số trường hợp bịch phôi bị thối nhũn từ bên trong. Bệnh có thể do nhiễm khuẩn trong quá trình phối trộn nguyên liệu, cấy giống không vô trùng hoặc bảo quản phôi không đúng kỹ thuật. Môi trường quá nóng hoặc độ ẩm quá cao cũng là yếu tố thúc đẩy bệnh phát triển."
+}
